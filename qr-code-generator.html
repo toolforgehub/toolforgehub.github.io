@@ -1,17 +1,187 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>QR Code Generator Online – Free PNG & SVG | ToolForgeHub</title><meta name="description" content="Create a free QR code from a website URL or text. Choose PNG or SVG output and a 200, 300 or 500 pixel size, then scan-test it before sharing."><meta name="robots" content="index,follow"><link rel="canonical" href="https://toolforgehub.github.io/qr-code-generator.html"><meta property="og:type" content="website"><meta property="og:site_name" content="ToolForgeHub"><meta property="og:title" content="Free QR Code Generator | QR from Text or URL | ToolForgeHub"><meta property="og:description" content="Create a free QR code from a website URL or text. Choose PNG or SVG output and a 200, 300 or 500 pixel size, then scan-test it before sharing."><meta property="og:url" content="https://toolforgehub.github.io/qr-code-generator.html"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Free QR Code Generator | QR from Text or URL | ToolForgeHub"><meta name="twitter:description" content="Create a free QR code from a website URL or text. Choose PNG or SVG output and a 200, 300 or 500 pixel size, then scan-test it before sharing."><link rel="stylesheet" href="assets/style.css"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QR Code Generator","url":"https://toolforgehub.github.io/qr-code-generator.html","description":"Generate a QR code image for a URL or text.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true}</script></head><body><header><div class="container nav"><a class="brand" href="index.html">Tool<span>ForgeHub</span></a><nav class="navlinks" aria-label="Primary"><a href="index.html">Home</a><a href="text-tools.html">Text</a><a href="image-tools.html">Images</a><a href="calculator-tools.html">Calculators</a><a href="developer-tools.html">Developer</a><a href="about.html">About</a></nav></div></header><main class="tool-wrap"><div class="container"><div class="tool-header"><span class="kicker">▦ Utility</span><h1>QR Code Generator</h1><p>Generate a QR code image for a URL or text.</p></div><div class="tool-box"><textarea id="t" placeholder="Enter a URL or text for your QR code..."></textarea><div class="row" style="margin-top:14px"><div><label>Size</label><select id="s"><option value="200">200 × 200</option><option value="300" selected>300 × 300</option><option value="500">500 × 500</option></select></div><div><label>Format</label><select id="f"><option value="png">PNG</option><option value="svg">SVG</option></select></div></div><div class="controls"><button class="btn" id="go">Generate QR Code</button></div><div id="o" class="result">—</div><p class="note">This tool uses the public QRServer/goQR image API to render the code. Avoid entering secrets or sensitive data.</p><div class="ad-slot"><div><div class="ad-label">Advertisement</div><!-- ADSTERRA: approved banner/native code --><span>Ad space</span></div></div></div><div class="content"><h2>Create a QR code online</h2>
-<p>Use this free QR code generator to turn a website address or a short text string into a scannable QR code. Enter the content, choose an image size and select PNG or SVG, then generate the code and open or save the result.</p>
-<h2>How to create a QR code</h2>
-<ol><li>Paste a complete website URL or enter the text you want to share.</li><li>Choose 200, 300 or 500 pixels for the output size.</li><li>Select PNG for a common image file or SVG for a scalable vector file.</li><li>Select <strong>Generate QR Code</strong>, then open or save the generated image.</li><li>Scan the saved image with a phone before printing or sharing it.</li></ol>
-<h2>What can a QR code contain?</h2>
-<p>A QR code can store a website URL or plain text. Common uses include a link on a flyer, a menu, an event page, a contact instruction or a product information page. Make sure the destination URL works and is the correct one before distributing the code.</p>
-<h2>Choose the right image size</h2>
-<p>Use 200 px for small digital use, 300 px for general sharing, or 500 px when you need a larger image. For print, test the final physical size and scan distance before producing many copies. Do not stretch a small code into a large blurry image.</p>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free QR Code Generator Online – Create & Download QR Codes | ToolForgeHub</title>
+<meta name="description" content="Create a QR code from any URL or text for free. Generate and download a clear PNG or scalable SVG QR code in your browser. No sign-up required.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://toolforgehub.github.io/qr-code-generator.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ToolForgeHub">
+<meta property="og:title" content="Free QR Code Generator Online | ToolForgeHub">
+<meta property="og:description" content="Create a QR code from any URL or text. Download a clear PNG or scalable SVG file for free.">
+<meta property="og:url" content="https://toolforgehub.github.io/qr-code-generator.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free QR Code Generator Online | ToolForgeHub">
+<meta name="twitter:description" content="Generate a free QR code from a URL or text and download it as PNG or SVG.">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.qr-stage{display:flex;align-items:center;justify-content:center;min-height:220px;margin:18px 0;padding:18px;background:#fff;border:1px solid var(--border);border-radius:14px}
+.qr-stage canvas{display:block;max-width:min(100%,360px);height:auto;image-rendering:pixelated}
+.qr-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.qr-stage:empty{display:none}
+.qr-help{font-size:.94rem;color:var(--muted)}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Free QR Code Generator","url":"https://toolforgehub.github.io/qr-code-generator.html","description":"Create a QR code from a URL or text and download it as a PNG or SVG file. QR generation runs in the browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true}
+</script>
+</head>
+<body>
+<header><div class="container nav">
+<a class="brand" href="index.html">Tool<span>ForgeHub</span></a>
+<nav class="navlinks" aria-label="Primary"><a href="index.html">Home</a><a href="text-tools.html">Text</a><a href="image-tools.html">Images</a><a href="calculator-tools.html">Calculators</a><a href="developer-tools.html">Developer</a><a href="about.html">About</a></nav>
+</div></header>
+<main class="tool-wrap"><div class="container">
+<div class="tool-header"><span class="kicker">▦ Free Utility</span><h1>Free QR Code Generator</h1><p>Create a QR code from a website link or plain text, preview it instantly, and download a PNG or SVG file.</p></div>
+<div class="tool-box">
+<label for="qrText">Website URL or text</label>
+<textarea id="qrText" rows="4" maxlength="2800" placeholder="Paste a website URL (including https://) or type your text..." aria-describedby="qrPrivacy"></textarea>
+<div class="row" style="margin-top:14px">
+<div><label for="qrSize">Image size</label><select id="qrSize"><option value="200">200 × 200 px</option><option value="300" selected>300 × 300 px</option><option value="500">500 × 500 px</option><option value="800">800 × 800 px</option></select></div>
+<div><label for="qrFormat">Download format</label><select id="qrFormat"><option value="png">PNG image</option><option value="svg">SVG vector</option></select></div>
+</div>
+<div class="row" style="margin-top:14px">
+<div><label for="qrError">Error correction</label><select id="qrError"><option value="L">Low – smaller QR</option><option value="M" selected>Medium – recommended</option><option value="Q">Quartile – more resilient</option><option value="H">High – most resilient</option></select></div>
+<div class="qr-help" style="align-self:end">A higher correction level can make a denser QR code.</div>
+</div>
+<div class="controls"><button class="btn" id="generateQr" type="button">Generate QR Code</button><button class="btn" id="clearQr" type="button">Clear</button></div>
+<div id="qrMessage" class="result" role="status" aria-live="polite">Enter a URL or text, then select Generate QR Code.</div>
+<div id="qrStage" class="qr-stage" aria-label="QR code preview"></div>
+<div class="qr-actions"><a class="btn" id="downloadQr" hidden download="toolforgehub-qr.png">Download QR Code</a></div>
+<p class="note" id="qrPrivacy">Privacy: QR generation happens in your browser. The text or URL you enter is not sent to a QR image service by this tool.</p>
+<div class="ad-slot"><div><div class="ad-label">Advertisement</div><!-- Insert approved Adsterra code here only after approval --><span>Ad space</span></div></div>
+</div>
+<div class="content">
+<h2>Create a QR code online for free</h2>
+<p>This free QR code maker turns a website URL or plain text into a scannable QR code. Use it for website links, event pages, menus, flyers, product information, contact instructions, classroom materials and signs. Generate a preview, choose PNG for everyday use or SVG for scalable artwork, and save the file to your device.</p>
+<h2>How to make a QR code</h2>
+<ol><li>Enter the complete website address or the text you want to share.</li><li>Choose an output size and error-correction level.</li><li>Select PNG or SVG as the download format.</li><li>Press <strong>Generate QR Code</strong> to display the preview.</li><li>Download the QR image and scan-test it with a phone before printing or sharing.</li></ol>
+<h2>PNG or SVG: which should you choose?</h2>
+<p>PNG is a raster image that works well for documents, websites and everyday sharing. SVG is a vector image that can be resized without becoming pixelated, making it useful for many design and print workflows. Keep a clear white margin around the QR code so scanners can detect its edges.</p>
+<h2>What is QR error correction?</h2>
+<p>Error correction adds backup information so a QR code may still scan if part of it is dirty or damaged. Higher correction levels create denser patterns and can require more space. For a simple website link, Medium is a practical starting point. Always test the finished image at the size and distance where people will scan it.</p>
 <section class="faq"><h2>QR code generator FAQs</h2>
-<h3>Can I create a QR code for a website link?</h3><p>Yes. Paste the complete URL, including https://, or enter plain text, choose an output size and format, then generate the QR image.</p>
-<h3>Should I download PNG or SVG?</h3><p>PNG is convenient for everyday sharing. SVG is a vector format that can scale cleanly for many design and print workflows.</p>
-<h3>Does a static QR code expire?</h3><p>A static QR code stores the text or URL used to create it. The image itself does not have an expiry timer, but a website destination can change or stop working.</p>
-<h3>Is my QR code content private?</h3><p>This page uses the public QRServer/goQR service to render the image. The URL or text you enter is sent to that third-party service, so do not enter passwords, private tokens or confidential information.</p>
-</section><h2>Privacy notice</h2>
-<p><strong>Important:</strong> QR images are rendered through the public QRServer/goQR service. The URL or text you enter is sent to that third-party service as part of the image request. Do not enter passwords, private tokens, payment details or confidential information.</p>
-<h2>Related tools</h2>
-<ul><li><a href="url-encoder.html">URL Encoder</a> — encode a URL component.</li><li><a href="password-generator.html">Password Generator</a> — create a random password.</li><li><a href="image-resizer.html">Image Resizer</a> — resize an image for sharing or printing.</li><li><a href="image-tools.html">All Image Tools</a> — browse image utilities.</li></ul></div></div></main><footer><div class="container"><div><strong>ToolForgeHub</strong> — free online utilities for everyday tasks.</div><div class="footer-links"><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="advertising.html">Advertising</a><a href="contact.html">Contact</a></div></div></footer><script>document.getElementById('go').onclick=()=>{const t=document.getElementById('t').value.trim(),s=document.getElementById('s').value,f=document.getElementById('f').value,o=document.getElementById('o');if(!t){o.textContent='Enter text or a URL.';return}const url='https://api.qrserver.com/v1/create-qr-code/?size='+s+'x'+s+'&format='+f+'&data='+encodeURIComponent(t);o.innerHTML='<img src="'+url+'" alt="Generated QR code" style="display:block;margin:auto;border:1px solid var(--border);border-radius:12px"><div class="controls"><a class="btn" href="'+url+'" download="toolforgehub-qr.'+f+'" target="_blank" rel="noopener">Open / Save QR</a></div>'};</script></body></html>
+<h3>Can I generate a QR code for any website URL?</h3><p>Yes. Paste the full URL, including https://, then generate and download the QR code. Make sure the destination page is public and works before sharing it.</p>
+<h3>Can I download my QR code as PNG or SVG?</h3><p>Yes. Choose PNG for a standard image file or SVG for a vector graphic, then use the Download QR Code link after generating the preview.</p>
+<h3>Does a static QR code expire?</h3><p>A static QR code does not have an automatic expiry date. It stores the URL or text encoded when it was created, but the destination website can change or stop working.</p>
+<h3>Is the text I enter uploaded?</h3><p>No external QR image service is used. The QR pattern is generated in your browser. The QR library is downloaded from a public CDN, but your entered text is processed locally by the page.</p>
+<h3>Why won't my QR code scan?</h3><p>Try a larger image, keep the white margin, avoid making the pattern too small, and choose a lower error-correction level for long text. Test the saved image with more than one phone before printing.</p>
+</section>
+<h2>Related free tools</h2>
+<ul><li><a href="url-encoder.html">URL Encoder</a> — encode text for URLs.</li><li><a href="password-generator.html">Password Generator</a> — create a secure random password.</li><li><a href="image-resizer.html">Image Resizer</a> — resize an image in pixels.</li><li><a href="jpg-to-pdf.html">JPG to PDF Converter</a> — create a PDF from images.</li></ul>
+<p><a href="index.html">← Browse all free online tools</a></p>
+</div></div></main>
+<footer><div class="container"><div><strong>ToolForgeHub</strong> — free online utilities for everyday tasks.</div><div class="footer-links"><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="advertising.html">Advertising</a><a href="contact.html">Contact</a></div></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@2.0.4/dist/qrcode.min.js"></script>
+<script>
+(function(){
+  const input=document.getElementById('qrText');
+  const sizeInput=document.getElementById('qrSize');
+  const formatInput=document.getElementById('qrFormat');
+  const errorInput=document.getElementById('qrError');
+  const preview=document.getElementById('qrStage');
+  const message=document.getElementById('qrMessage');
+  const download=document.getElementById('downloadQr');
+  const generate=document.getElementById('generateQr');
+  let lastObjectUrl=null;
+
+  function setMessage(text, isError){
+    message.textContent=text;
+    message.style.color=isError?'#b42318':'';
+  }
+  function releaseDownload(){
+    if(lastObjectUrl){URL.revokeObjectURL(lastObjectUrl);lastObjectUrl=null;}
+    download.hidden=true;
+    download.removeAttribute('href');
+  }
+  function makeCanvas(qr,size){
+    const count=qr.getModuleCount();
+    const margin=4;
+    const total=count+margin*2;
+    const canvas=document.createElement('canvas');
+    canvas.width=size;canvas.height=size;
+    canvas.setAttribute('role','img');
+    canvas.setAttribute('aria-label','Generated QR code preview');
+    const ctx=canvas.getContext('2d');
+    if(!ctx) throw new Error('Your browser could not create an image canvas.');
+    ctx.fillStyle='#fff';ctx.fillRect(0,0,size,size);
+    ctx.fillStyle='#111';
+    const scale=size/total;
+    for(let row=0;row<count;row++){
+      for(let col=0;col<count;col++){
+        if(qr.isDark(row,col)){
+          const x=Math.round((col+margin)*scale);
+          const y=Math.round((row+margin)*scale);
+          const right=Math.round((col+margin+1)*scale);
+          const bottom=Math.round((row+margin+1)*scale);
+          ctx.fillRect(x,y,Math.max(1,right-x),Math.max(1,bottom-y));
+        }
+      }
+    }
+    return canvas;
+  }
+  function makeSvg(qr,size){
+    const count=qr.getModuleCount();
+    const margin=4;
+    const view=count+margin*2;
+    const parts=[];
+    for(let row=0;row<count;row++){
+      for(let col=0;col<count;col++){
+        if(qr.isDark(row,col)){
+          parts.push('M'+(col+margin)+' '+(row+margin)+'h1v1h-1z');
+        }
+      }
+    }
+    return '<?xml version="1.0" encoding="UTF-8"?>'+
+      '<svg xmlns="http://www.w3.org/2000/svg" width="'+size+'" height="'+size+'" viewBox="0 0 '+view+' '+view+'" shape-rendering="crispEdges">'+
+      '<rect width="'+view+'" height="'+view+'" fill="#fff"/>'+
+      '<path d="'+parts.join('')+'" fill="#111"/></svg>';
+  }
+  generate.addEventListener('click',function(){
+    const text=input.value.trim();
+    if(!text){setMessage('Please enter a website URL or some text first.',true);input.focus();return;}
+    if(typeof qrcode!=='function'){setMessage('The QR generator library did not load. Check your internet connection and refresh the page.',true);return;}
+    releaseDownload();
+    preview.replaceChildren();
+    try{
+      const qr=qrcode(0,errorInput.value);
+      qr.addData(text);
+      qr.make();
+      const size=Number(sizeInput.value);
+      const canvas=makeCanvas(qr,size);
+      preview.appendChild(canvas);
+      const format=formatInput.value;
+      let blob;
+      if(format==='svg'){
+        blob=new Blob([makeSvg(qr,size)],{type:'image/svg+xml;charset=utf-8'});
+      }else{
+        const dataUrl=canvas.toDataURL('image/png');
+        const binary=atob(dataUrl.split(',')[1]);
+        const bytes=new Uint8Array(binary.length);
+        for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);
+        blob=new Blob([bytes],{type:'image/png'});
+      }
+      lastObjectUrl=URL.createObjectURL(blob);
+      download.href=lastObjectUrl;
+      download.download='toolforgehub-qr.'+format;
+      download.textContent='Download '+format.toUpperCase()+' QR Code';
+      download.hidden=false;
+      setMessage('Your QR code is ready. Download it and scan-test the saved image before sharing.',false);
+    }catch(error){
+      preview.replaceChildren();
+      releaseDownload();
+      const detail=error&&error.message?error.message:'The text may be too long for a QR code.';
+      setMessage('Could not create this QR code. Try a shorter URL or text. ('+detail+')',true);
+    }
+  });
+  document.getElementById('clearQr').addEventListener('click',function(){
+    input.value='';preview.replaceChildren();releaseDownload();
+    setMessage('Enter a URL or text, then select Generate QR Code.',false);
+    input.focus();
+  });
+  window.addEventListener('beforeunload',releaseDownload);
+})();
+</script>
+</body></html>
